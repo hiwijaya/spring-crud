@@ -17,6 +17,8 @@
         <property name="password" value="${database.password}"/>
     </bean>
 
+
+    <context:component-scan base-package="com.hiwijaya.springcrud.service" />
     <context:property-placeholder location="database.properties"/>
 
 
