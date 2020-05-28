@@ -13,6 +13,8 @@ import java.sql.SQLException;
 @Component
 public class BookService {
 
+    // TODO: codes below is just for test connection and di config
+
     @Autowired
     private HikariDataSource dataSource;
 

@@ -18,6 +18,7 @@ public class AnnotationConfig {
 
     @Bean
     public HikariDataSource dataSource(){
+
         Properties props = Lib.getPropertiesFile("database.properties");
 
         HikariDataSource dataSource = new HikariDataSource();
