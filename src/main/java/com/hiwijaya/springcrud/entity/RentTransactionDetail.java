@@ -33,7 +33,7 @@ public class RentTransactionDetail {
         this.rentTransaction = new RentTransaction(trasactionId);
     }
 
-    public void setBookOnlyId(Integer bookId){
+    public void setBookOnlyId(Long bookId){
         this.book = new Book(bookId);
     }
 

@@ -52,7 +52,7 @@ public class RentTransaction {
     }
 
 
-    public void setCustomerOnlyId(Integer customerId){
+    public void setCustomerOnlyId(Long customerId){
         this.customer = new Customer(customerId);
     }
 

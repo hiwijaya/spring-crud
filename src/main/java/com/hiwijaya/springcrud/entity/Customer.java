@@ -20,7 +20,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name = "name", length = 50, nullable = false)
     private String name;
@@ -34,14 +34,14 @@ public class Customer {
     private List<RentTransaction> rentals;
 
 
-    public Customer(Integer id, String name, Gender gender) {
+    public Customer(Long id, String name, Gender gender) {
         this.id = id;
         this.name = name;
         this.gender = gender;
     }
 
 
-    public Customer(Integer id){
+    public Customer(Long id){
         this.id = id;
     }
 

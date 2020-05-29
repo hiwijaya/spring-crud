@@ -1,6 +1,6 @@
 package com.hiwijaya.springcrud.app;
 
-import com.hiwijaya.springcrud.config.AnnotationConfig;
+import com.hiwijaya.springcrud.config.ApplicationConfig;
 import com.hiwijaya.springcrud.service.BookService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,7 +24,7 @@ public class Main {
 
 
     public void annotationApplication() throws SQLException {
-        ApplicationContext context = new AnnotationConfigApplicationContext(AnnotationConfig.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         BookService bookService = context.getBean(BookService.class);
 
         bookService.save();
