@@ -18,7 +18,7 @@ public class RentTransactionDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "transaction_id", nullable = false)
@@ -29,11 +29,11 @@ public class RentTransactionDetail {
     private Book book;
 
 
-    public void setRentTransactionOnlyId(Integer trasactionId){
+    public void setRentTransactionOnlyId(Long trasactionId){
         this.rentTransaction = new RentTransaction(trasactionId);
     }
 
-    public void setBookOnlyId(Long bookId){
+    public void setBookOnlyId(Integer bookId){
         this.book = new Book(bookId);
     }
 

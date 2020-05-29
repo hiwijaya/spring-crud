@@ -20,7 +20,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)     // default
-    private Long id;
+    private Integer id;
 
     @Column(name = "title", length = 100, nullable = false)
     private String title;
@@ -37,7 +37,7 @@ public class Book {
     private List<RentTransactionDetail> transactionDetails;
 
 
-    public Book(Long id){
+    public Book(Integer id){
         this.id = id;
     }
 

@@ -21,9 +21,9 @@ import java.util.Properties;
  * @author Happy Indra Wijaya
  */
 @Configuration
-@EnableJpaRepositories
-@EnableTransactionManagement
 @ComponentScan(basePackages = "com.hiwijaya.springcrud.service")
+@EnableJpaRepositories(basePackages = "com.hiwijaya.springcrud.repository")
+@EnableTransactionManagement
 public class ApplicationConfig {
 
     @Bean

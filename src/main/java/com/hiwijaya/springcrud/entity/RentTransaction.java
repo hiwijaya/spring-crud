@@ -23,7 +23,7 @@ public class RentTransaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
@@ -47,12 +47,12 @@ public class RentTransaction {
     private List<RentTransactionDetail> details;
 
 
-    public RentTransaction(Integer id){
+    public RentTransaction(Long id){
         this.id = id;
     }
 
 
-    public void setCustomerOnlyId(Long customerId){
+    public void setCustomerOnlyId(Integer customerId){
         this.customer = new Customer(customerId);
     }
 
