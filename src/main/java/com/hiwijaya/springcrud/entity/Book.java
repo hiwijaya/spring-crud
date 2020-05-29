@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author Happy Indra Wijaya
@@ -29,10 +30,11 @@ public class Book {
     @Column(name = "rent_price")
     private BigDecimal rentPrice = BigDecimal.ZERO;     // dealing with 'default' value of relational mapping
 
-
-    // TODO: use attribute converter. ref: https://thorben-janssen.com/hibernate-tips-how-to-map-a-boolean-to-y-n/
-    @Column(name = "rented")
+    @Column(name = "rented", length = 1)
     private boolean rented;     // Y/N
+
+    @OneToMany(mappedBy = "book")
+    private List<RentTransactionDetail> transactionDetails;
 
 
     public Book(Integer id){
