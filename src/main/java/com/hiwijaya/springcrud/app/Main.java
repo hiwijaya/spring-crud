@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.sql.SQLException;
+import java.util.function.Consumer;
 
 /**
  * @author Happy Indra Wijaya
@@ -25,14 +26,24 @@ public class Main {
 
 
     public void annotationApplication() throws SQLException {
+
         ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+
         CustomerService customerService = context.getBean(CustomerService.class);
 
         Customer c = new Customer();
         c.setName("Happy Indra Wijaya");
         c.setGender(Gender.MALE);
 
-        customerService.simpan(c);
+        customerService.save(c);
+        System.out.println(c);
+
+        System.out.println("--------------");
+
+        customerService.getAll().stream().forEach(customer -> System.out.println(customer));
+
+
+
     }
 
     public static void main(String[] args) {
