@@ -50,4 +50,14 @@ public class Customer {
         return gender.getSymbol();
     }
 
+
+    // WARN: Lombok auto toString() can produce 'LazyInitializationException' when entity have @OneToMany
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", gender=" + gender +
+                '}';
+    }
+
 }

@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.function.Consumer;
 
 /**
@@ -19,9 +20,10 @@ public class Main {
 
     public void xmlApplication() throws SQLException {
         ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
-        BookService bookService = context.getBean(BookService.class);
+        CustomerService customerService = context.getBean(CustomerService.class);
 
-        bookService.save();
+        List<Customer> customers = customerService.getAll();
+        customers.stream().forEach(customer -> System.out.println(customer));
     }
 
 
@@ -31,16 +33,18 @@ public class Main {
 
         CustomerService customerService = context.getBean(CustomerService.class);
 
-        Customer c = new Customer();
-        c.setName("Happy Indra Wijaya");
-        c.setGender(Gender.MALE);
-
-        customerService.save(c);
-        System.out.println(c);
+//        Customer c = new Customer();
+//        c.setName("Happy Indra Wijaya");
+//        c.setGender(Gender.MALE);
+//
+//        customerService.save(c);
+//        System.out.println(c);
 
         System.out.println("--------------");
 
-        customerService.getAll().stream().forEach(customer -> System.out.println(customer));
+        List<Customer> customers = customerService.getAll();
+
+        customers.stream().forEach(customer -> System.out.println(customer));
 
 
 
@@ -50,7 +54,7 @@ public class Main {
         Main main = new Main();
 
         try {
-            main.annotationApplication();
+            main.xmlApplication();
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();

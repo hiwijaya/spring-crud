@@ -25,14 +25,16 @@ public class RentTransaction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
     @Column(name = "rental_date")
+    @Temporal(TemporalType.DATE)    // use TIMESTAMP to store date and time
     private Date rentalDate;
 
     @Column(name = "return_date")
+    @Temporal(TemporalType.DATE)
     private Date returnDate;
 
     @Column(name = "total")
@@ -55,5 +57,8 @@ public class RentTransaction {
     public void setCustomerOnlyId(Integer customerId){
         this.customer = new Customer(customerId);
     }
+
+
+
 
 }
