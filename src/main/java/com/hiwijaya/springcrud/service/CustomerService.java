@@ -29,7 +29,7 @@ public class CustomerService {
     }
 
     public List<Customer> getAll(){
-        return repository.findAll();    // TODO: it still produce 'LazyInitializationException'
+        return repository.findAll();
     }
 
 
