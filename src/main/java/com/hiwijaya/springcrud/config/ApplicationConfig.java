@@ -54,6 +54,15 @@ public class ApplicationConfig {
         factory.setPackagesToScan("com.hiwijaya.springcrud.entity");
         factory.setDataSource(dataSource());
 
+        // hibernate configuration properties (hibernate.cfg.xml)
+        Properties hibernateProperties = new Properties();
+        hibernateProperties.put("hibernate.format_sql", "true");
+        hibernateProperties.put("hibernate.jdbc.batch_size", "20");
+        hibernateProperties.put("hibernate.order_inserts", "true");
+        hibernateProperties.put("hibernate.order_updates", "true");
+        hibernateProperties.put("hibernate.batch_versioned_data", "true");
+        factory.setJpaProperties(hibernateProperties);
+
         return factory;
 
     }
