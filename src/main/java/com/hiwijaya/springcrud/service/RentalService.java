@@ -7,6 +7,7 @@ import com.hiwijaya.springcrud.entity.RentTransactionDetail;
 import com.hiwijaya.springcrud.repository.RentalRepository;
 import com.hiwijaya.springcrud.util.BookUnavailableException;
 import com.hiwijaya.springcrud.util.Lib;
+import com.hiwijaya.springcrud.util.RentOutdatedException;
 import com.hiwijaya.springcrud.util.RentStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -69,5 +70,41 @@ public class RentalService {
 
         return total;
     }
+
+    public boolean returnBooks(RentTransaction transaction) throws RentOutdatedException {
+
+        if(booksAlreadyReturned(transaction)){
+            return true;
+        }
+
+        checkTransactionIfOutdated(transaction);
+
+        repository.updateStatus(transaction.getId(), RentStatus.RETURNED);
+
+        return true;
+    }
+
+    private boolean booksAlreadyReturned(RentTransaction transaction){
+        return transaction.getStatus().equals(RentStatus.RETURNED);
+    }
+
+    private void checkTransactionIfOutdated(RentTransaction transaction) throws RentOutdatedException {
+        if(transaction.getStatus().equals(RentStatus.RENT)){
+            if(transaction.getReturnDate().before(Lib.now())){  // outdated
+                repository.updateStatus(transaction.getId(), RentStatus.OUTDATED);
+                throw new RentOutdatedException("You have to pay the late charges.");
+            }
+        }
+    }
+
+
+    public RentTransaction getTransaction(Long id){
+        return repository.findById(id).orElse(null);
+    }
+
+    public List<RentTransaction> getAll(){
+        return repository.findAll();
+    }
+
 
 }
