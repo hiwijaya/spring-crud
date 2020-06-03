@@ -20,7 +20,7 @@ public class BooleanConverter implements AttributeConverter<Boolean, String> {
     @Override
     public Boolean convertToEntityAttribute(String dbData) {     // database --> object
         if(dbData != null){
-            return dbData.equals("Y");
+            return "Y".equals(dbData);
         }
         return null;
     }

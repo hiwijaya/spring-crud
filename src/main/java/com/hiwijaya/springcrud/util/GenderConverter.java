@@ -26,10 +26,10 @@ public class GenderConverter implements AttributeConverter<Gender, String> {
             return null;
         }
 
-        if(dbData.equals("M")){
+        if("M".equals(dbData)){
             return Gender.MALE;
         }
-        else if(dbData.equals("F")){
+        else if("F".equals(dbData)){
             return Gender.FEMALE;
         }
 
