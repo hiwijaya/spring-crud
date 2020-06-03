@@ -14,6 +14,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
+import java.util.Objects;
 import java.util.Properties;
 
 
@@ -32,7 +33,7 @@ public class ApplicationConfig {
         Properties props = Lib.getPropertiesFile("database.properties");
 
         HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setDriverClassName(props.getProperty("database.driverClassName"));
+        dataSource.setDriverClassName(Objects.requireNonNull(props).getProperty("database.driverClassName"));
         dataSource.setJdbcUrl(props.getProperty("database.url"));
         dataSource.setUsername(props.getProperty("database.username"));
         dataSource.setPassword(props.getProperty("database.password"));

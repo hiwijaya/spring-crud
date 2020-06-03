@@ -3,6 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd
@@ -10,9 +11,13 @@
 	    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 	    http://www.springframework.org/schema/tx
         https://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/data/jpa
+        https://www.springframework.org/schema/data/jpa/spring-jpa.xsd
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/context/spring-context.xsd">
 
+
+    <!--  DataSource connection pool with HikariCP  -->
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
         <property name="jdbcUrl" value="${database.url}"/>
@@ -20,21 +25,46 @@
         <property name="password" value="${database.password}"/>
     </bean>
 
-    <bean id="customerService" class="com.hiwijaya.springcrud.service.CustomerService">
 
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="generateDdl" value="true"/>
+                <property name="showSql" value="true"/>
+            </bean>
+        </property>
+        <property name="packagesToScan" value="com.hiwijaya.springcrud.entity"/>
+        <property name="dataSource" ref="dataSource"/>
+
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.jdbc.batch_size">20</prop>
+                <prop key="hibernate.order_inserts">true</prop>
+                <prop key="hibernate.order_updates">true</prop>
+                <prop key="hibernate.batch_versioned_data">true</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
     <!--  @EnableTransactionManagement  -->
-    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
-    <!--  change to id="transactionManager" for auto  -->
-    <tx:annotation-driven transaction-manager="txManager"/>
+    <!--  transaction-manager="transactionManager"  -->
+    <tx:annotation-driven />
 
 
-    <context:component-scan base-package="com.hiwijaya.springcrud" />
+    <!--  @EnableJpaRepositories  -->
+    <jpa:repositories base-package="com.hiwijaya.springcrud.repository"/>
+
+
+    <!--  @ComponentScan  -->
+    <context:component-scan base-package="com.hiwijaya.springcrud.service" />
+
+
     <context:property-placeholder location="database.properties"/>
-
 
 </beans>

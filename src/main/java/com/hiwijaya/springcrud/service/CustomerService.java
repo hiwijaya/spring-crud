@@ -3,14 +3,15 @@ package com.hiwijaya.springcrud.service;
 import com.hiwijaya.springcrud.entity.Customer;
 import com.hiwijaya.springcrud.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * @author Happy Indra Wijaya
  */
-@Component
+@Service
 public class CustomerService {
 
     @Autowired
@@ -18,6 +19,10 @@ public class CustomerService {
 
     public Customer save(Customer customer){
         return repository.save(customer);
+    }
+
+    public List<Customer> save(Customer... customers){
+        return repository.saveAll(Arrays.asList(customers));
     }
 
     public void delete(Customer customer){

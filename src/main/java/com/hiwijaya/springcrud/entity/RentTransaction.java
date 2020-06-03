@@ -59,6 +59,14 @@ public class RentTransaction {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "RentTransaction{" +
+                "id=" + id +
+                ", rentalDate=" + rentalDate +
+                ", returnDate=" + returnDate +
+                ", total=" + total +
+                ", status=" + status +
+                '}';
+    }
 }

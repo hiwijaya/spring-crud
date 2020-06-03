@@ -12,8 +12,7 @@ import java.util.List;
 /**
  * @author Happy Indra Wijaya
  */
-// repositoryImplementationPostfix = "Impl" is default
-public class CustomRentalRepositoryImpl implements CustomRentalRepository {
+public class CustomRentalRepositoryImpl implements CustomRentalRepository {     // repositoryImplementationPostfix = "Impl" is default
 
     @Autowired
     private EntityManager entityManager;

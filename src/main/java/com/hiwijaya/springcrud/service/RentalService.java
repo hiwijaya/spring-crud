@@ -10,7 +10,7 @@ import com.hiwijaya.springcrud.util.Lib;
 import com.hiwijaya.springcrud.util.RentOutdatedException;
 import com.hiwijaya.springcrud.util.RentStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * @author Happy Indra Wijaya
  */
-@Component
+@Service
 public class RentalService {
 
     @Autowired
