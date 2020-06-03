@@ -35,7 +35,7 @@ public class Book {
     @Convert(converter = BooleanConverter.class)
     private boolean rented;     // Y/N
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<RentTransactionDetail> transactionDetails;
 
 

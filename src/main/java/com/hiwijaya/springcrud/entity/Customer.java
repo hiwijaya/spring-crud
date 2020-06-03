@@ -30,7 +30,7 @@ public class Customer {
     private Gender gender;
 
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<RentTransaction> rentals;
 
 

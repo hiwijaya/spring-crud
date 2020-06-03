@@ -34,10 +34,8 @@ public class CustomRentalRepositoryImpl implements CustomRentalRepository {     
 
         entityManager.persist(transaction);     // alternatively merge() can insert new objects and update existing ones.
 
-
-        // TODO: find a way to batch/bulk inserts with Spring Data JPA
-
-        transaction.getDetails().forEach(detail -> entityManager.persist(detail) );
+        // auto persist with CascadeType.ALL
+        //transaction.getDetails().forEach(detail -> entityManager.persist(detail) );
 
     }
 

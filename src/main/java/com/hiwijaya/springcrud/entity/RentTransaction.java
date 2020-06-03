@@ -45,7 +45,7 @@ public class RentTransaction {
     @Convert(converter = StatusConverter.class)
     private RentStatus status;      // 0, 1, 2
 
-    @OneToMany(mappedBy = "rentTransaction")
+    @OneToMany(mappedBy = "rentTransaction", cascade = CascadeType.ALL)
     private List<RentTransactionDetail> details;
 
 
