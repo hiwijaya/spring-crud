@@ -12,7 +12,7 @@ import com.hiwijaya.springcrud.util.Gender;
 import com.hiwijaya.springcrud.util.RentOutdatedException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+//import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -131,7 +131,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ApplicationContext xmlContext = new ClassPathXmlApplicationContext("config.xml");
+//        ApplicationContext xmlContext = new ClassPathXmlApplicationContext("config.xml");
         ApplicationContext annotationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
         Main main = new Main();
@@ -141,9 +141,9 @@ public class Main {
 
         // uncomment to run the services
         main.createCustomers();
-//        main.createBooks();
-//        main.rent();
-//        main.returnBooks();
+        main.createBooks();
+        main.rent();
+        main.returnBooks();
 
     }
 
