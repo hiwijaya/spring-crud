@@ -12,4 +12,5 @@ Features:
 -  Entity attribute converter
 -  Included both **XML** and **Annotation** based configuration
 
-This repo is *'spring version'* from [plain JDBC](https://github.com/hiwijaya/java-crud) CRUD application.
+This repo is **'spring version'** from [plain JDBC](https://github.com/hiwijaya/java-crud) CRUD application. 
+If you're looking for **'spring-boot version'**, feel free to check this [repo](https://github.com/hiwijaya/spring-boot-crud).
